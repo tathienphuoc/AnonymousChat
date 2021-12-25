@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="781.0" prefWidth="425.0" styleClass="main-layout" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="425.0" BorderPane.alignment="CENTER">
+         <children>
+            <Region prefHeight="41.0" prefWidth="11.0" />
+            <ImageView fitHeight="36.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" styleClass="cursor-hand">
+               <image>
+                  <Image url="@../images/back-icon.png" />
+               </image>
+            </ImageView>
+            <Region prefHeight="41.0" prefWidth="11.0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ta Thien Phuoc" textAlignment="CENTER" wrappingWidth="146.7294921875" />
+         </children>
+      </HBox>
+   </top>
+   <bottom>
+      <HBox alignment="CENTER" BorderPane.alignment="CENTER">
+         <children>
+            <Region prefHeight="66.0" prefWidth="12.0" />
+            <TextField prefHeight="37.0" prefWidth="351.0" promptText="Type a message..." />
+            <Region prefHeight="66.0" prefWidth="12.0" />
+            <ImageView fitHeight="35.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true" styleClass="cursor-hand">
+               <image>
+                  <Image url="@../images/send-icon.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+   </bottom>
+   <center>
+      <ScrollPane BorderPane.alignment="CENTER">
+         <content>
+            <VBox>
+               <children>
+                  <AnchorPane prefHeight="61.0" prefWidth="400.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" layoutX="131.0" layoutY="33.0" prefHeight="70.0" prefWidth="91.0" styleClass="send" text="Label" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="61.0" prefWidth="400.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" layoutX="131.0" layoutY="33.0" prefHeight="70.0" prefWidth="91.0" styleClass="receive" text="Label" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="61.0" prefWidth="400.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" layoutX="131.0" layoutY="33.0" prefHeight="70.0" prefWidth="91.0" styleClass="send" text="Label" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="61.0" prefWidth="400.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" layoutX="131.0" layoutY="33.0" prefHeight="70.0" prefWidth="91.0" styleClass="send" text="Label" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="61.0" prefWidth="400.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" layoutX="131.0" layoutY="33.0" prefHeight="70.0" prefWidth="91.0" styleClass="send" text="Label" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="61.0" prefWidth="400.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" layoutX="131.0" layoutY="33.0" prefHeight="70.0" prefWidth="91.0" styleClass="send" text="Label" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="61.0" prefWidth="400.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" layoutX="131.0" layoutY="33.0" prefHeight="70.0" prefWidth="91.0" styleClass="send" text="Label" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="61.0" prefWidth="400.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" layoutX="131.0" layoutY="33.0" prefHeight="70.0" prefWidth="91.0" styleClass="send" text="Label" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="61.0" prefWidth="400.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" layoutX="131.0" layoutY="33.0" prefHeight="70.0" prefWidth="91.0" styleClass="send" text="Label" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="61.0" prefWidth="400.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" layoutX="131.0" layoutY="33.0" prefHeight="70.0" prefWidth="91.0" styleClass="send" text="Label" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="61.0" prefWidth="400.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" layoutX="131.0" layoutY="33.0" prefHeight="70.0" prefWidth="91.0" styleClass="send" text="Label" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="61.0" prefWidth="400.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" layoutX="131.0" layoutY="33.0" prefHeight="70.0" prefWidth="91.0" styleClass="send" text="Label" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="61.0" prefWidth="400.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" layoutX="131.0" layoutY="33.0" prefHeight="70.0" prefWidth="91.0" styleClass="send" text="Label" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="61.0" prefWidth="400.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" layoutX="131.0" layoutY="33.0" prefHeight="70.0" prefWidth="91.0" styleClass="send" text="Label" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>
