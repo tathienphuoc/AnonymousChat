@@ -12,12 +12,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="781.0" prefWidth="425.0" styleClass="main-layout" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="781.0" prefWidth="425.0" styleClass="main-layout" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ChatController">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="425.0" BorderPane.alignment="CENTER">
          <children>
             <Region prefHeight="41.0" prefWidth="11.0" />
-            <ImageView fitHeight="36.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" styleClass="cursor-hand">
+            <ImageView fx:id="backButton" fitHeight="36.0" fitWidth="28.0" onMouseClicked="#onBackClick" pickOnBounds="true" preserveRatio="true" styleClass="cursor-hand">
                <image>
                   <Image url="@../images/back-icon.png" />
                </image>
@@ -31,9 +31,9 @@
       <HBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
             <Region prefHeight="66.0" prefWidth="12.0" />
-            <TextField prefHeight="37.0" prefWidth="351.0" promptText="Type a message..." />
+            <TextField onKeyPressed="#onEnterPress" prefHeight="37.0" prefWidth="351.0" promptText="Type a message..." />
             <Region prefHeight="66.0" prefWidth="12.0" />
-            <ImageView fitHeight="35.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true" styleClass="cursor-hand">
+            <ImageView fx:id="sendButton" fitHeight="35.0" fitWidth="38.0" onMouseClicked="#onSendClick" pickOnBounds="true" preserveRatio="true" styleClass="cursor-hand">
                <image>
                   <Image url="@../images/send-icon.png" />
                </image>

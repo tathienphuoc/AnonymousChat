@@ -25,12 +25,13 @@
 }
 
 .input-name {
+    -fx-border-color: white white #414752 white;
     -fx-min-width: 200px;
     -fx-background-color: none;
 }
 
 .input-name:focused {
-    -fx-border-color: white white #414752 white;
+    -fx-border-color: white white #4294ff white;
     -fx-padding: 5px 10px;
 }
 
@@ -114,4 +115,28 @@
 
 .cursor-hand{
     -fx-cursor: hand;
+}
+
+
+.find-button {
+    -fx-background-color: #4294ff;
+    -fx-text-fill: white;
+    -fx-border-color: #4294ff;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-padding: 10px 50px;
+    -fx-min-width: 100px;
+    -fx-cursor: hand;
+}
+
+.find-button:hover {
+    -fx-background-color: white;
+    -fx-text-fill: #4294ff;
+}
+
+.cancel-button {
+    -fx-background-color: none;
+    -fx-text-fill: red;
+    -fx-cursor: hand;
+    -fx-font-size: 18px;
 }
