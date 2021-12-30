@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<StackPane styleClass="main-layout" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainLoadingController">
+   <children>
+      <VBox fx:id="VBox" alignment="CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="781.0" prefWidth="425.0" styleClass="main-layout" stylesheets="@../css/main.css">
+         <children>
+            <Region prefHeight="49.0" prefWidth="299.0" />
+            <Text layoutX="256.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hello," textAlignment="CENTER">
+               <styleClass>
+                  <String fx:value="h2" />
+                  <String fx:value="h1" />
+               </styleClass>
+            </Text>
+            <Region prefHeight="7.0" prefWidth="289.0" />
+            <Text fx:id="nickname" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="h1" text="Ta Thien Phuoc" />
+            <Region prefHeight="35.0" prefWidth="339.0" />
+            <Button fx:id="findButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onFindClick" styleClass="find-button" text="Find People" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Button>
+            <Region prefHeight="122.0" prefWidth="317.0" />
+         </children>
+      </VBox>
+      <StackPane fx:id="StackPane" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/main.css" visible="false">
+         <children>
+            <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/load.gif" />
+               </image>
+            </ImageView>
+            <Button fx:id="cancelButton" mnemonicParsing="false" onMouseClicked="#onCancelClick" styleClass="cancel-button" text="Cancel" />
+         </children>
+      </StackPane>
+   </children>
+</StackPane>
