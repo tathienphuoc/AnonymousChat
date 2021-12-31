@@ -2,8 +2,6 @@ package Main;
 
 import Controllers.MainThread;
 import Controllers.WelcomeController;
-import Utils.AlertUtils;
-import Utils.StatusCode;
 import Utils.ViewUtils;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -17,12 +15,10 @@ public class Main extends Application {
     public static Stage window;
     public static Socket socket;
     public static String partnerName;
-    public static String host="localhost";
-    public static int port=6000;
 
     static {
         try {
-            socket = new Socket(host,port);
+            socket = new Socket("localhost",6000);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -35,7 +31,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         window = stage;
-
         ViewUtils.loadView(ViewUtils.WElCOME_VIEW);
+
     }
 }
