@@ -25,6 +25,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
 import java.io.IOException;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -58,8 +59,22 @@ public class ChatController implements Initializable {
     void onSendClick() {
         if (!input.getText().isBlank()) {
             try {
-                SendThread.send(Main.socket, input.getText());
-                displayMessage(input.getText(), true);
+                if (StatusCode.isExitCode(input.getText())) {
+                    Platform.runLater(() -> {
+                        if (AlertUtils.question("Are you sure want to exit")) {
+                            try {
+                                SendThread.send(Main.socket, StatusCode.EXIT_CODE);
+                                Main.socket= new Socket(Main.host,Main.port);
+                                ViewUtils.loadView(ViewUtils.WElCOME_VIEW);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                } else {
+                    SendThread.send(Main.socket, input.getText());
+                    displayMessage(input.getText(), true);
+                }
                 input.setText(null);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -69,26 +84,35 @@ public class ChatController implements Initializable {
 
     @FXML
     void onEnterPress(KeyEvent event) {
-        if(event.getCode().equals(KeyCode.ENTER)){
+        if (event.getCode().equals(KeyCode.ENTER)) {
             onSendClick();
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.partnerName.setText("Chatting with "+Main.partnerName);
+        this.partnerName.setText("Chatting with " + Main.partnerName);
         Thread listen = new Thread(() -> {
             try {
                 while (true) {
                     String message = ReceiveThread.receive(Main.socket);
-//                    if(StatusCode.isExitCode(message)){
-//                        Platform.runLater(() -> {
-//                            displayMessage(message, false);
-//                        });
-//                    }
-                    Platform.runLater(() -> {
-                        displayMessage(message, false);
-                    });
+                    if (StatusCode.isExitCode(message)) {
+                        Platform.runLater(() -> {
+                            System.out.println(message);
+                            AlertUtils.alert(Main.partnerName + " is out the chat");
+                            try {
+                                Main.socket= new Socket(Main.host,Main.port);
+                                ViewUtils.loadView(ViewUtils.WElCOME_VIEW);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                        });
+                    } else {
+                        Platform.runLater(() -> {
+                            displayMessage(message, false);
+                        });
+                    }
                 }
             } catch (IOException e) {
                 e.printStackTrace();
