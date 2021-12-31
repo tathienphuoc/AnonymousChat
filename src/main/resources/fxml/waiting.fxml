@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<StackPane styleClass="main-layout" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.WelcomeController">
+<StackPane styleClass="main-layout" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.WaitingController">
    <children>
-      <VBox fx:id="VBox" alignment="CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="781.0" prefWidth="425.0" styleClass="main-layout" stylesheets="@../css/main.css">
+      <VBox fx:id="VBox" alignment="CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="781.0" prefWidth="425.0" style="-fx-opacity: 0.2;" styleClass="main-layout" stylesheets="@../css/main.css">
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="image-icon">
                <image>
@@ -33,7 +33,7 @@
             <Region prefHeight="122.0" prefWidth="317.0" />
          </children>
       </VBox>
-      <StackPane fx:id="StackPane" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/main.css" visible="false">
+      <StackPane fx:id="StackPane" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/main.css">
          <children>
             <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>

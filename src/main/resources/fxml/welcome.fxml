@@ -6,27 +6,41 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="781.0" prefWidth="425.0" styleClass="main-layout" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.WelcomeController">
+<StackPane styleClass="main-layout" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.WelcomeController">
    <children>
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="image-icon">
-         <image>
-            <Image url="@../images/chat-icon.png" />
-         </image>
-      </ImageView>
-      <Region prefHeight="49.0" prefWidth="299.0" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="h1" text="Talk anonymously" />
-      <Region prefHeight="7.0" prefWidth="289.0" />
-      <Text layoutX="256.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="h2" text="“ Find new people, &#10;chat with them anonymously! ”" textAlignment="CENTER" />
-      <Region prefHeight="35.0" prefWidth="339.0" />
-      <TextField fx:id="inputName" alignment="CENTER" focusTraversable="false" onKeyPressed="#onEnterPress" promptText="Enter Your Nick Name" styleClass="input-name" />
-      <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#onStartClick" styleClass="button-start" text="Start Now" textAlignment="CENTER">
-         <VBox.margin>
-            <Insets top="20.0" />
-         </VBox.margin>
-      </Button>
-      <Region prefHeight="122.0" prefWidth="317.0" />
+      <VBox fx:id="VBox" alignment="CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="781.0" prefWidth="425.0" styleClass="main-layout" stylesheets="@../css/main.css">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="image-icon">
+               <image>
+                  <Image url="@../images/chat-icon.png" />
+               </image>
+            </ImageView>
+            <Region prefHeight="49.0" prefWidth="299.0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="h1" text="Talk anonymously" />
+            <Region prefHeight="7.0" prefWidth="289.0" />
+            <Text layoutX="256.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="h2" text="“ Find new people, &#10;chat with them anonymously! ”" textAlignment="CENTER" />
+            <Region prefHeight="35.0" prefWidth="339.0" />
+            <TextField fx:id="inputName" alignment="CENTER" focusTraversable="false" onKeyPressed="#onEnterPress" promptText="Enter Your Nick Name" styleClass="input-name" />
+            <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#onStartClick" styleClass="button-start" text="Start Now" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Button>
+            <Region prefHeight="122.0" prefWidth="317.0" />
+         </children>
+      </VBox>
+      <StackPane fx:id="StackPane" prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/main.css" visible="false">
+         <children>
+            <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/load.gif" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
    </children>
-</VBox>
+</StackPane>

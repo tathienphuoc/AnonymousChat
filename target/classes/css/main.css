@@ -140,3 +140,9 @@
     -fx-cursor: hand;
     -fx-font-size: 18px;
 }
+
+.chat-container {
+    /*-fx-start-margin: 100px;*/
+    -fx-background-color: white;
+}
+

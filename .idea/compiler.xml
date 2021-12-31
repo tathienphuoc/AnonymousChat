@@ -13,4 +13,9 @@
       <module name="AnonymousChat" target="17" />
     </bytecodeTargetLevel>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="AnonymousChat" options="--add-exports javafx.graphics/com.sun.javafx.css=com.example.anonymouschat" />
+    </option>
+  </component>
 </project>

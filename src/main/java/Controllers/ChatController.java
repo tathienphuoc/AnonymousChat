@@ -1,16 +1,53 @@
 package Controllers;
+
+import Main.Main;
+import Socket.ReceiveThread;
+import Socket.SendThread;
+import Utils.AlertUtils;
+import Utils.StatusCode;
+import Utils.ViewUtils;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
-public class ChatController {
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+public class ChatController implements Initializable {
+
+    @FXML
+    private ScrollPane scrollPane;
 
     @FXML
     private ImageView backButton;
 
     @FXML
+    private TextField input;
+
+    @FXML
     private ImageView sendButton;
+
+    @FXML
+    private VBox vbox;
+
+    @FXML
+    private Text partnerName;
 
     @FXML
     void onBackClick(MouseEvent event) {
@@ -18,13 +55,62 @@ public class ChatController {
     }
 
     @FXML
-    void onSendClick(MouseEvent event) {
-        System.out.println("onSendClick");
+    void onSendClick() {
+        if (!input.getText().isBlank()) {
+            try {
+                SendThread.send(Main.socket, input.getText());
+                displayMessage(input.getText(), true);
+                input.setText(null);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @FXML
     void onEnterPress(KeyEvent event) {
-        System.out.println("onSendPress");
+        if(event.getCode().equals(KeyCode.ENTER)){
+            onSendClick();
+        }
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        this.partnerName.setText("Chatting with "+Main.partnerName);
+        Thread listen = new Thread(() -> {
+            try {
+                while (true) {
+                    String message = ReceiveThread.receive(Main.socket);
+//                    if(StatusCode.isExitCode(message)){
+//                        Platform.runLater(() -> {
+//                            displayMessage(message, false);
+//                        });
+//                    }
+                    Platform.runLater(() -> {
+                        displayMessage(message, false);
+                    });
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        listen.start();
+    }
+
+    public void displayMessage(String message, boolean isSender) {
+        HBox hBox = new HBox();
+        hBox.setAlignment(isSender ? Pos.CENTER_RIGHT : Pos.CENTER_LEFT);
+        hBox.getStyleClass().add("chat-container");
+
+        TextFlow textFlow = new TextFlow();
+        textFlow.getStyleClass().add(isSender ? "send" : "receive");
+
+        Text text = new Text(message);
+        text.setFill(Color.WHITE);
+
+        textFlow.getChildren().add(text);
+        hBox.getChildren().add(textFlow);
+        vbox.getChildren().add(hBox);
+        scrollPane.setVvalue(1.0);
+    }
 }
