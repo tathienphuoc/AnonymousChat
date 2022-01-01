@@ -84,14 +84,14 @@ public class ChatController implements Initializable {
 
     @FXML
     void onEnterPress(KeyEvent event) {
-        if (event.getCode().equals(KeyCode.ENTER)) {
+        if(event.getCode().equals(KeyCode.ENTER)){
             onSendClick();
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.partnerName.setText("Chatting with " + Main.partnerName);
+        this.partnerName.setText("Chatting with "+Main.partnerName);
         Thread listen = new Thread(() -> {
             try {
                 while (true) {

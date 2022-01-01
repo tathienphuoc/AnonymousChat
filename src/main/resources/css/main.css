@@ -49,8 +49,6 @@
     -fx-text-fill: white;
     -fx-padding: 10px 20px;
     -fx-alignment: CENTER-RIGHT;
-    -fx-border-radius: 10 0 10 10;
-    -fx-background-radius: 10 0 10 10;
 }
 
 .receive {
@@ -58,8 +56,6 @@
     -fx-text-fill: white;
     -fx-padding: 10px 20px;
     -fx-alignment: CENTER-LEFT;
-    -fx-border-radius: 0 10 10 10;
-    -fx-background-radius: 0 10 10 10;
 }
 
 /*Start CSS Chat*/
@@ -146,6 +142,7 @@
 }
 
 .chat-container {
+    /*-fx-start-margin: 100px;*/
     -fx-background-color: white;
 }
 

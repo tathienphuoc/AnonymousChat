@@ -3,6 +3,7 @@ package Utils;
 import Controllers.WelcomeController;
 import Socket.SendThread;
 import Main.Main;
+import Socket.SendThread;
 import javafx.application.Platform;
 import javafx.css.Style;
 import javafx.event.EventHandler;
