@@ -8,14 +8,28 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="781.0" prefWidth="425.0" styleClass="main-layout" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ChatController">
    <top>
-      <HBox alignment="CENTER" prefHeight="45.0" prefWidth="425.0" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" style="-fx-border-color: black; -fx-border-width: 0 0 1 0;" BorderPane.alignment="TOP_LEFT">
          <children>
-            <Text fx:id="partnerName" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="146.7294921875" />
+            <TextField fx:id="partnerName" alignment="CENTER" editable="false" focusTraversable="false" onKeyPressed="#onEnterPress" promptText="Type a message..." style="-fx-cursor: none;" text="Ta Thien Phuoc" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </TextField>
+            <ImageView fx:id="exitButton" fitHeight="26.0" fitWidth="24.0" onMouseClicked="#onExitClick" pickOnBounds="true" preserveRatio="true" styleClass="cursor-hand">
+               <image>
+                  <Image url="@../images/x-icon.png" />
+               </image>
+            </ImageView>
          </children>
+         <BorderPane.margin>
+            <Insets left="5.0" right="5.0" />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+         </padding>
       </HBox>
    </top>
    <bottom>

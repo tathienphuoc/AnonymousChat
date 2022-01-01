@@ -7,7 +7,6 @@ import java.net.Socket;
 import java.util.Vector;
 
 public class ServerThread extends Thread {
-    //    public static ArrayList<Client> clients = new ArrayList<Client>();
     public static Vector<Client> clients = new Vector<>() {
         @Override
         public synchronized String toString() {
@@ -50,15 +49,14 @@ public class ServerThread extends Thread {
         try {
             String nickname = ReceiveThread.receive(clientSocket);
 
-            if(StatusCode.isExitCode(nickname)){
+            if (StatusCode.isExitCode(nickname)) {
                 return;
             }
 
             while (isExist(nickname)) {
-//                SendThread.send(clientSocket, nickname + " is used");
                 SendThread.send(clientSocket, StatusCode.NAME_IS_USED_CODE);
                 nickname = ReceiveThread.receive(clientSocket);
-                if(StatusCode.isExitCode(nickname)){
+                if (StatusCode.isExitCode(nickname)) {
                     return;
                 }
             }
@@ -74,8 +72,8 @@ public class ServerThread extends Thread {
                     SendThread.send(c.getSocket(), nickname);
                     if (ReceiveThread.receive(c.getSocket()).contains("y")) {
                         SendThread.send(clientSocket, c.getNickName());
-                        String message=ReceiveThread.receive(clientSocket);
-                        if(StatusCode.isExitCode(message)){
+                        String message = ReceiveThread.receive(clientSocket);
+                        if (StatusCode.isExitCode(message)) {
                             c.setAvailable(true);
                             SendThread.send(c.getSocket(), StatusCode.REFUSE_CODE);
                             clients.remove(client);
@@ -88,9 +86,6 @@ public class ServerThread extends Thread {
 
                             SendThread.send(c.getSocket(), StatusCode.CHAT_CODE);
                             SendThread.send(clientSocket, StatusCode.CHAT_CODE);
-
-//                            new ForwardMessageThread(clientSocket, c.getSocket()).start();
-//                            new ForwardMessageThread(c.getSocket(), clientSocket).start();
 
                             new ForwardMessageThread(client, c).start();
                             new ForwardMessageThread(c, client).start();

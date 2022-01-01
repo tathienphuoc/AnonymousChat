@@ -12,23 +12,23 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ChatController implements Initializable {
 
@@ -36,23 +36,35 @@ public class ChatController implements Initializable {
     private ScrollPane scrollPane;
 
     @FXML
-    private ImageView backButton;
+    private ImageView exitButton;
 
     @FXML
     private TextField input;
 
     @FXML
-    private ImageView sendButton;
+    private TextField partnerName;
 
     @FXML
     private VBox vbox;
 
-    @FXML
-    private Text partnerName;
 
     @FXML
-    void onBackClick(MouseEvent event) {
-        System.out.println("onBackClick");
+    void onExitClick(MouseEvent event) {
+        backToWelcomeScene();
+    }
+
+    private void backToWelcomeScene() {
+        Platform.runLater(() -> {
+            if (AlertUtils.question("Are you sure want to exit")) {
+                try {
+                    SendThread.send(Main.socket, StatusCode.EXIT_CODE);
+                    Main.socket = new Socket(Main.host, Main.port);
+                    ViewUtils.loadView(ViewUtils.WElCOME_VIEW);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     @FXML
@@ -60,17 +72,7 @@ public class ChatController implements Initializable {
         if (!input.getText().isBlank()) {
             try {
                 if (StatusCode.isExitCode(input.getText())) {
-                    Platform.runLater(() -> {
-                        if (AlertUtils.question("Are you sure want to exit")) {
-                            try {
-                                SendThread.send(Main.socket, StatusCode.EXIT_CODE);
-                                Main.socket= new Socket(Main.host,Main.port);
-                                ViewUtils.loadView(ViewUtils.WElCOME_VIEW);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
+                    backToWelcomeScene();
                 } else {
                     SendThread.send(Main.socket, input.getText());
                     displayMessage(input.getText(), true);
@@ -84,14 +86,19 @@ public class ChatController implements Initializable {
 
     @FXML
     void onEnterPress(KeyEvent event) {
-        if(event.getCode().equals(KeyCode.ENTER)){
+        if (event.getCode().equals(KeyCode.ENTER)) {
             onSendClick();
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.partnerName.setText("Chatting with "+Main.partnerName);
+        this.partnerName.setText("Chatting with " + Main.partnerName);
+        try {
+            exitButton.setImage(new Image(new FileInputStream("src/main/resources/images/x-icon.png")));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         Thread listen = new Thread(() -> {
             try {
                 while (true) {
@@ -101,7 +108,7 @@ public class ChatController implements Initializable {
                             System.out.println(message);
                             AlertUtils.alert(Main.partnerName + " is out the chat");
                             try {
-                                Main.socket= new Socket(Main.host,Main.port);
+                                Main.socket = new Socket(Main.host, Main.port);
                                 ViewUtils.loadView(ViewUtils.WElCOME_VIEW);
                             } catch (IOException e) {
                                 e.printStackTrace();

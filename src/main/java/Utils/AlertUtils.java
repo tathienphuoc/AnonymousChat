@@ -1,10 +1,7 @@
 package Utils;
 
 import Main.Main;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.stage.Stage;
 
 import java.util.Optional;
 
@@ -39,8 +36,6 @@ public class AlertUtils {
         alert.setTitle("Question");
         alert.setHeaderText(null);
 
-
-
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.isPresent()) {
@@ -51,7 +46,6 @@ public class AlertUtils {
             }
         }
 
-//        return alert.showAndWait().get().equals(accept);
         return false;
     }
 }

@@ -9,11 +9,6 @@ public class ForwardMessageThread extends Thread {
     private BufferedReader in;
     private BufferedWriter out;
 
-//    public ForwardMessageThread(Socket fromSocket, Socket toSocket) throws IOException {
-//        in = new BufferedReader(new InputStreamReader(fromSocket.getInputStream()));
-//        out = new BufferedWriter(new OutputStreamWriter(toSocket.getOutputStream()));
-//    }
-
     public ForwardMessageThread(Client fromClient, Client toClient) throws IOException {
         this.fromClient = fromClient;
         this.toClient = toClient;
@@ -27,21 +22,14 @@ public class ForwardMessageThread extends Thread {
                 String message = receive();
                 send(message);
                 if (StatusCode.isExitCode(message)) {
-                    int fromClientIndex=ServerThread.getIndexClientByNickname(fromClient.getNickName());
-                    if(fromClientIndex!=-1){
+                    int fromClientIndex = ServerThread.getIndexClientByNickname(fromClient.getNickName());
+                    if (fromClientIndex != -1) {
                         ServerThread.clients.remove(fromClientIndex);
                     }
-                    int toClientIndex=ServerThread.getIndexClientByNickname(toClient.getNickName());
-                    if(toClientIndex!=-1){
+                    int toClientIndex = ServerThread.getIndexClientByNickname(toClient.getNickName());
+                    if (toClientIndex != -1) {
                         ServerThread.clients.remove(toClientIndex);
                     }
-//                    ServerThread.clients
-//                            .get(ServerThread.getIndexClientByNickname(fromClient.getNickName()))
-//                            .setAvailable(true);//delete roi xiu dung o vi tri toClient laij kh thay
-//
-//                    ServerThread.clients
-//                            .get(ServerThread.getIndexClientByNickname(toClient.getNickName()))
-//                            .setAvailable(true);
                     break;
                 }
             } catch (IOException e) {

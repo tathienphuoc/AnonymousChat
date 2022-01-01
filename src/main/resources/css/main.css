@@ -117,7 +117,7 @@
     -fx-background-color: none;
 }
 
-.cursor-hand{
+.cursor-hand {
     -fx-cursor: hand;
 }
 
@@ -145,7 +145,6 @@
 }
 
 .chat-container {
-    /*-fx-start-margin: 100px;*/
     -fx-background-color: white;
 }
 

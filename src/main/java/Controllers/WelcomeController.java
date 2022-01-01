@@ -1,6 +1,8 @@
 package Controllers;
 
 import Main.Main;
+import Socket.ReceiveThread;
+import Socket.SendThread;
 import Utils.AlertUtils;
 import Utils.StatusCode;
 import Utils.ViewUtils;
@@ -10,9 +12,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import Socket.*;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
@@ -24,7 +23,6 @@ import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class WelcomeController implements Initializable {
-    String path = "/fxml/chat.fxml";
     @FXML
     private TextField inputName;
     @FXML
@@ -39,8 +37,6 @@ public class WelcomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        StackPane.setStyle("visibility: true");
-//        VBox.setStyle("-fx-opacity: 0.2");
 
         Thread listen = new Thread(() -> {
             while (true) {
@@ -49,8 +45,6 @@ public class WelcomeController implements Initializable {
                     System.out.println(message);
                     if (StatusCode.isNameIsUsedCode(message)) {
                         Platform.runLater(() -> {
-//                            StackPane.setStyle("visibility: false;");
-//                            VBox.setStyle("-fx-opacity: 1;");
                             disableLoading();
                             AlertUtils.alert(inputName.getText() + " is used");
                         });
@@ -109,8 +103,6 @@ public class WelcomeController implements Initializable {
             });
         } else {
             try {
-//                StackPane.setStyle("visibility: true");
-//                VBox.setStyle("-fx-opacity: 0.2");
                 enableLoading();
                 SendThread.send(Main.socket, nickname);
             } catch (IOException e) {
@@ -127,13 +119,6 @@ public class WelcomeController implements Initializable {
     void disableLoading() {
         StackPane.setStyle("visibility: false");
         VBox.setStyle("-fx-opacity: 1");
-    }
-
-    @FXML
-    void onEnterPress(KeyEvent event) {
-        if (event.getCode().equals(KeyCode.ENTER)) {
-            onStartClick();
-        }
     }
 
 }
