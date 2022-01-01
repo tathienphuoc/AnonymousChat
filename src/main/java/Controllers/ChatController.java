@@ -75,7 +75,7 @@ public class ChatController implements Initializable {
                     SendThread.send(Main.socket, input.getText());
                     displayMessage(input.getText(), true);
                 }
-                input.setText(null);
+                input.setText("");
             } catch (IOException e) {
                 e.printStackTrace();
             }

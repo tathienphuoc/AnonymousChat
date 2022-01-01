@@ -1,6 +1,7 @@
 module com.example.anonymouschat {
     requires javafx.controls;
     requires javafx.fxml;
+    requires lombok;
 
 
     exports Controllers;

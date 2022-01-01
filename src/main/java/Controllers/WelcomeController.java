@@ -47,12 +47,12 @@ public class WelcomeController implements Initializable {
                 try {
                     String message = ReceiveThread.receive(Main.socket);
                     System.out.println(message);
-                    if (message.contains("is used")) {
-                        String finalMessage = message;
+                    if (StatusCode.isNameIsUsedCode(message)) {
                         Platform.runLater(() -> {
-                            StackPane.setStyle("visibility: false;");
-                            VBox.setStyle("-fx-opacity: 1;");
-                            AlertUtils.alert(finalMessage);
+//                            StackPane.setStyle("visibility: false;");
+//                            VBox.setStyle("-fx-opacity: 1;");
+                            disableLoading();
+                            AlertUtils.alert(inputName.getText() + " is used");
                         });
                         continue;
                     }
@@ -64,14 +64,14 @@ public class WelcomeController implements Initializable {
                         return;
                     }
 
-                    if(StatusCode.isRefuseCode(message)){
+                    if (StatusCode.isRefuseCode(message)) {
                         Platform.runLater(() -> {
-                            AlertUtils.alert(Main.partnerName +" dont want to chat with you");
+                            AlertUtils.alert(Main.partnerName + " dont want to chat with you");
                         });
                         continue;
                     }
 
-                    if (!message.contains("is connecting")) {
+                    if (!StatusCode.isConnectCode(message)) {
                         String finalMessage1 = message;
                         Main.partnerName = message;
                         AtomicBoolean isAccept = new AtomicBoolean(false);
@@ -102,104 +102,37 @@ public class WelcomeController implements Initializable {
 
     @FXML
     void onStartClick() {
-        try {
-//            StackPane.setStyle("visibility: true");
-//            VBox.setStyle("-fx-opacity: 0.2");
-            StackPane.setStyle("visibility: true");
-            VBox.setStyle("-fx-opacity: 0.2");
-            String nickname = inputName.getText();
-            SendThread.send(Main.socket, nickname);
-
-//            if (ReceiveThread.receive(socket).contains("is used")) {
-//                AlertUtils.alert(nickname + " is used");
-//            } else {
+        String nickname = inputName.getText();
+        if (nickname.isBlank()) {
+            Platform.runLater(() -> {
+                AlertUtils.alert("Please enter your nickname");
+            });
+        } else {
+            try {
 //                StackPane.setStyle("visibility: true");
 //                VBox.setStyle("-fx-opacity: 0.2");
-////                showLoading();
-//                System.out.println("truowc");
-//                String message = ReceiveThread.receive(socket);
-//                System.out.println("giua");
-//
-////            while (true) {
-////                System.out.println("You want to chat with " + message);
-//                if (AlertUtils.question("You want to chat with " + message)) {
-//                    AlertUtils.alert("accept");
-//                } else {
-//                    AlertUtils.alert("denied");
-//                }
-//                System.out.println("truowc");
-
-//            }
-        } catch (
-                IOException e) {
-            e.printStackTrace();
+                enableLoading();
+                SendThread.send(Main.socket, nickname);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-
     }
 
-    void showLoading() {
+    void enableLoading() {
         StackPane.setStyle("visibility: true");
         VBox.setStyle("-fx-opacity: 0.2");
     }
 
-    @FXML
-    void onEnterPress(KeyEvent event) {
-//        try {
-        if (event.getCode().equals(KeyCode.ENTER)) {
-            onStartClick();
-//                new MainThread().start();
-//                Platform.runLater(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        StackPane.setStyle("visibility: false");//tắt loading
-//                        VBox.setStyle("-fx-opacity: 1");//tắt loading
-//                        if (ReceiveThread.receive(socket).contains("is used")) {// Tên đã tồn tại
-//                            AlertUtils.alert(nickname + " is used");
-//                        } else {
-//                            String message = ReceiveThread.receive(socket);
-//                            if (AlertUtils.question("You want to chat with " + message)) {
-//                                AlertUtils.alert("accept");
-//                            } else {
-//                                AlertUtils.alert("denied");
-//                            }
-//                        }
-//                    }
-//                });
-        }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+    void disableLoading() {
+        StackPane.setStyle("visibility: false");
+        VBox.setStyle("-fx-opacity: 1");
     }
 
-    void findPartner() {
-        try {
-            StackPane.setStyle("visibility: true");
-            VBox.setStyle("-fx-opacity: 0.2");
-            String message = ReceiveThread.receive(Main.socket);
-//            while (true) {
-//                System.out.println("You want to chat with " + message);
-            if (AlertUtils.question("You want to chat with " + message)) {
-                AlertUtils.alert("accept");
-            } else {
-                AlertUtils.alert("denied");
-            }
-
-//                SendThread.send(socket, console.getInput("Your answer"));
-//                message = ReceiveThread.receive(socket);
-//                if (message.contains("Connecting")) {
-//                    System.out.println(message);
-//                    SendThread sendThread = new SendThread(socket);
-//                    Thread send = new Thread(sendThread);
-//                    send.start();
-//
-//                    ReceiveThread receiveThread = new ReceiveThread(socket);
-//                    Thread receive = new Thread(receiveThread);
-//                    receive.start();
-//                    break;
-//                }
-//            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+    @FXML
+    void onEnterPress(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            onStartClick();
         }
     }
 
