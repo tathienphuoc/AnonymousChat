@@ -22,7 +22,7 @@ public class AlertUtils {
     public static boolean question(String content) {
         ButtonType accept = new ButtonType("Accept", ButtonBar.ButtonData.OK_DONE);
         ButtonType refuse = new ButtonType("Refuse", ButtonBar.ButtonData.CANCEL_CLOSE);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, content, accept, refuse);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, content, accept, refuse);
         alert.initOwner(Main.window);
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.setStyle("-fx-background-color: white");
